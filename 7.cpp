@@ -1,5 +1,7 @@
 // A Dynamic Programming based
 // C++ program to partition problem
+//https://www.ideserve.co.in/learn/set-partition-problem-dynamic-programming
+
 #include <bits/stdc++.h>
 using namespace std;
 

@@ -13,7 +13,7 @@ void lcs( string X, string Y, int m, int n ){
                 L[i][j] = max(L[i-1][j], L[i][j-1]);
         }
     }
-    int index = L[m][n];
+    //int index = L[m][n];
     cout<<"Length:"<<L[m][n]<<endl;
     //char lcs[index+1];
     //lcs[index] = '\0';
@@ -23,7 +23,7 @@ void lcs( string X, string Y, int m, int n ){
         if (X[i-1] == Y[j-1]){
             //lcs[index-1] = X[i-1];
             lcs=X[i-1]+lcs;
-            i--; j--; index--;
+            i--; j--; //index--;
         }
         else if (L[i-1][j] > L[i][j-1])
             i--;

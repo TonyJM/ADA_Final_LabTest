@@ -3,23 +3,29 @@ using namespace std;
 #define INF 999
 //#define N 3
 //#define A 8
-int N,A;
+int N,A,flag=0;
 void coinChange(int d[], int C[], int S[]) {
+    int k;
     int i, p, min, coin;
     //when amount is 0
     //then min coin required is 0
     C[0] = 0;
     S[0] = 0;
+
     for(p = 1; p <= A; p++) {
         min = INF;
+        k=0;
         for(i = 1; i <= N; i++) {
             if(d[i] <= p) {
                 if(1 + C[p - d[i]] < min) {
                     min = 1 + C[p - d[i]];
                     coin = i;
                 }
+                k++;
             }
+            if(k==0) flag=1;
         }
+        if(flag) break;
         C[p] = min;
         S[p] = coin;
     }
@@ -62,12 +68,79 @@ int main() {
     display(C);
     cout<<"\nS[p]\n";
     display(S);*/
+    if(flag)
+        cout<<"\nNot Possible";
+    else{
+        cout<<"\nMinimum coins required: "<<C[A]<<endl;//<<A<<" ="<< C[A]<<"\n";
+        //cout<<"\nCoin Set\n";
+        coinSet(d, S);
+    }
+    return 0;
+}
+
+
+
+
+
+
+/*
+#include<bits/stdc++.h>
+using namespace std;
+#define INF 999
+//#define N 3
+//#define A 8
+int N,A;
+void coinChange(int d[], int C[], int S[]) {
+    int i, p, min, coin;
+    //when amount is 0
+    //then min coin required is 0
+    C[0] = 0;
+    S[0] = 0;
+    for(p = 1; p <= A; p++) {
+        min = INF;
+        for(i = 1; i <= N; i++) {
+            if(d[i] <= p) {
+                if(1 + C[p - d[i]] < min) {
+                    min = 1 + C[p - d[i]];
+                    coin = i;
+                }
+            }
+        }
+        C[p] = min;
+        S[p] = coin;
+    }
+}
+void coinSet(int d[], int S[]) {
+    int a = A;
+    cout<<"Coins Used :\n";
+    while(a > 0) {
+        //cout<<"\nUse coin of denomination: "<< d[S[a]];
+        cout<<d[S[a]]<<"\t";
+        a = a - d[S[a]];
+    }
+    cout<<endl;
+}
+
+int main() {
+    cout<<"Enter no.of coins:";
+    cin>>N;
+    int d[N+1];
+    d[0]=0;
+    cout<<"Enter the denominations:\n";
+    for(int i=1;i<=N;i++){
+        cin>>d[i];
+    }
+    cout<<"Enter the amount:";
+    cin>>A;
+    int C[A+1];
+    int S[A+1];
+    coinChange(d, C, S);
     cout<<"\nMinimum coins required: "<<C[A]<<endl;//<<A<<" ="<< C[A]<<"\n";
     //cout<<"\nCoin Set\n";
     coinSet(d, S);
     return 0;
 }
-
+*/
 
 
 
